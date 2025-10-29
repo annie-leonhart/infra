@@ -1,6 +1,0 @@
-Argo CD notes
--------------
-    https://argo-cd.readthedocs.io/en/stable/
-    tag v3.1.9
-
-    ArgoCD crd - boostrap/crds/argocd-crd.yaml
