@@ -11,7 +11,7 @@ spec:
     path: charts/envoy-gateway
     helm:
       valueFiles:
-        - ../../values/dev/envoy-values.yaml
+        - ../../values/dev/envoy-controller/values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: envoy-gateway
