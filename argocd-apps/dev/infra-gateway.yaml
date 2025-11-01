@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: envoy-controller
+  name: infra-gateway-app
   namespace: argocd
 spec:
   project: default
@@ -11,10 +11,10 @@ spec:
     path: charts/envoy-gateway
     helm:
       valueFiles:
-        - ../../values/dev/envoy-controller/values.yaml
+        - ../../gateway/dev/gateway/infra-gateway.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: envoy-gateway
+    namespace: platform-gateway
   syncPolicy:
     automated:
       prune: true
