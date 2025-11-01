@@ -8,10 +8,7 @@ spec:
   source:
     repoURL: https://github.com/annie-leonhart/infra.git
     targetRevision: HEAD
-    path: charts/envoy-gateway
-    helm:
-      valueFiles:
-        - ../../gateway/dev/gateway/infra-gateway.yaml
+    path: gateway/dev/gateway/infra-gateway.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: platform-gateway
