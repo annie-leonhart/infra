@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/annie-leonhart/infra.git
     targetRevision: HEAD
-    path: gateway/dev/gateway/infra-gateway.yaml
+    path: gateway/dev/gateway
   destination:
     server: https://kubernetes.default.svc
     namespace: platform-gateway
