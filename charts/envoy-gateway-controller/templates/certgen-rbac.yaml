@@ -96,7 +96,7 @@ rules:
     resources:
       - mutatingwebhookconfigurations
     resourceNames:
-      - 'envoy-infra-gateway-controller-topology-injector.{{ .Release.Namespace }}'
+      - 'envoy-gateway-topology-injector.{{ .Release.Namespace }}'
     verbs:
       - update
       - patch

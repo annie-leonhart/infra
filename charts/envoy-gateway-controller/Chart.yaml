@@ -4,16 +4,16 @@ description: The Helm chart for Envoy Gateway
 home: https://gateway.envoyproxy.io/
 icon: https://raw.githubusercontent.com/envoyproxy/gateway/main/site/assets/icons/logo.svg
 keywords:
-- infra-gateway-api
+- gateway-api
 - envoyproxy
-- envoy-infra-gateway-controller
+- envoy-gateway
 - eg
 maintainers:
-- name: envoy-infra-gateway-controller-steering-committee
+- name: envoy-gateway-steering-committee
   url: https://github.com/envoyproxy/gateway/blob/main/GOVERNANCE.md
-- name: envoy-infra-gateway-controller-maintainers
+- name: envoy-gateway-maintainers
   url: https://github.com/envoyproxy/gateway/blob/main/CODEOWNERS
-name: infra-gateway-helm
+name: gateway-helm
 sources:
 - https://github.com/envoyproxy/gateway
 type: application
