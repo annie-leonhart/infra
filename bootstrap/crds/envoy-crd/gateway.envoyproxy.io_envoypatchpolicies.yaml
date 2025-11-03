@@ -4,12 +4,12 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.17.3
-  name: envoypatchpolicies.gateway.envoyproxy.io
+  name: envoypatchpolicies.infra-gateway.envoyproxy.io
 spec:
-  group: gateway.envoyproxy.io
+  group: infra-gateway.envoyproxy.io
   names:
     categories:
-    - envoy-gateway
+    - envoy-infra-gateway-controller
     kind: EnvoyPatchPolicy
     listKind: EnvoyPatchPolicyList
     plural: envoypatchpolicies
@@ -243,7 +243,7 @@ spec:
                         PolicyAncestorStatus struct describes the status of.
                       properties:
                         group:
-                          default: gateway.networking.k8s.io
+                          default: infra-gateway.networking.k8s.io
                           description: |-
                             Group is the group of the referent.
                             When unspecified, "gateway.networking.k8s.io" is inferred.

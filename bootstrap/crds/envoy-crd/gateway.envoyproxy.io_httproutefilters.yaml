@@ -4,12 +4,12 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.17.3
-  name: httproutefilters.gateway.envoyproxy.io
+  name: httproutefilters.infra-gateway.envoyproxy.io
 spec:
-  group: gateway.envoyproxy.io
+  group: infra-gateway.envoyproxy.io
   names:
     categories:
-    - envoy-gateway
+    - envoy-infra-gateway-controller
     kind: HTTPRouteFilter
     listKind: HTTPRouteFilterList
     plural: httproutefilters

@@ -4,12 +4,12 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.17.3
-  name: envoyproxies.gateway.envoyproxy.io
+  name: envoyproxies.infra-gateway.envoyproxy.io
 spec:
-  group: gateway.envoyproxy.io
+  group: infra-gateway.envoyproxy.io
   names:
     categories:
-    - envoy-gateway
+    - envoy-infra-gateway-controller
     kind: EnvoyProxy
     listKind: EnvoyProxyList
     plural: envoyproxies
@@ -4051,7 +4051,7 @@ spec:
                                             Default is "xfs".
                                           type: string
                                         gateway:
-                                          description: gateway is the host address
+                                          description: infra-gateway is the host address
                                             of the ScaleIO API Gateway.
                                           type: string
                                         protectionDomain:
@@ -4106,7 +4106,7 @@ spec:
                                             that is associated with this volume source.
                                           type: string
                                       required:
-                                      - gateway
+                                      - infra-gateway
                                       - secretRef
                                       - system
                                       type: object
@@ -9354,7 +9354,7 @@ spec:
                                             Default is "xfs".
                                           type: string
                                         gateway:
-                                          description: gateway is the host address
+                                          description: infra-gateway is the host address
                                             of the ScaleIO API Gateway.
                                           type: string
                                         protectionDomain:
@@ -9409,7 +9409,7 @@ spec:
                                             that is associated with this volume source.
                                           type: string
                                       required:
-                                      - gateway
+                                      - infra-gateway
                                       - secretRef
                                       - system
                                       type: object
@@ -10896,7 +10896,7 @@ spec:
                                                 type: boolean
                                             type: object
                                           healthCheck:
-                                            description: HealthCheck allows gateway
+                                            description: HealthCheck allows infra-gateway
                                               to perform active health checking on
                                               backends.
                                             properties:
@@ -11180,7 +11180,7 @@ spec:
                                                     default: 0
                                                     description: ConsecutiveGatewayErrors
                                                       sets the number of consecutive
-                                                      gateway errors triggering ejection.
+                                                      infra-gateway errors triggering ejection.
                                                     format: int32
                                                     type: integer
                                                   consecutiveLocalOriginFailures:
@@ -11548,7 +11548,7 @@ spec:
                                                         retries.
                                                       enum:
                                                       - 5xx
-                                                      - gateway-error
+                                                      - infra-gateway-error
                                                       - reset
                                                       - reset-before-request
                                                       - connect-failure
@@ -11690,10 +11690,10 @@ spec:
                                       rule: 'has(self.backendRefs) ? self.backendRefs.all(f,
                                         f.kind == ''Service'' || f.kind == ''Backend'')
                                         : true'
-                                    - message: BackendRefs only support Core and gateway.envoyproxy.io
+                                    - message: BackendRefs only support Core and infra-gateway.envoyproxy.io
                                         group.
                                       rule: 'has(self.backendRefs) ? (self.backendRefs.all(f,
-                                        f.group == "" || f.group == ''gateway.envoyproxy.io''))
+                                        f.group == "" || f.group == ''infra-gateway.envoyproxy.io''))
                                         : true'
                                   file:
                                     description: File defines the file accesslog sink.
@@ -12007,7 +12007,7 @@ spec:
                                                 type: boolean
                                             type: object
                                           healthCheck:
-                                            description: HealthCheck allows gateway
+                                            description: HealthCheck allows infra-gateway
                                               to perform active health checking on
                                               backends.
                                             properties:
@@ -12291,7 +12291,7 @@ spec:
                                                     default: 0
                                                     description: ConsecutiveGatewayErrors
                                                       sets the number of consecutive
-                                                      gateway errors triggering ejection.
+                                                      infra-gateway errors triggering ejection.
                                                     format: int32
                                                     type: integer
                                                   consecutiveLocalOriginFailures:
@@ -12659,7 +12659,7 @@ spec:
                                                         retries.
                                                       enum:
                                                       - 5xx
-                                                      - gateway-error
+                                                      - infra-gateway-error
                                                       - reset
                                                       - reset-before-request
                                                       - connect-failure
@@ -12776,10 +12776,10 @@ spec:
                                       rule: 'has(self.backendRefs) ? self.backendRefs.all(f,
                                         f.kind == ''Service'' || f.kind == ''Backend'')
                                         : true'
-                                    - message: BackendRefs only support Core and gateway.envoyproxy.io
+                                    - message: BackendRefs only support Core and infra-gateway.envoyproxy.io
                                         group.
                                       rule: 'has(self.backendRefs) ? (self.backendRefs.all(f,
-                                        f.group == "" || f.group == ''gateway.envoyproxy.io''))
+                                        f.group == "" || f.group == ''infra-gateway.envoyproxy.io''))
                                         : true'
                                   type:
                                     description: Type defines the type of accesslog
@@ -13226,7 +13226,7 @@ spec:
                                           type: boolean
                                       type: object
                                     healthCheck:
-                                      description: HealthCheck allows gateway to perform
+                                      description: HealthCheck allows infra-gateway to perform
                                         active health checking on backends.
                                       properties:
                                         active:
@@ -13493,7 +13493,7 @@ spec:
                                             consecutiveGatewayErrors:
                                               default: 0
                                               description: ConsecutiveGatewayErrors
-                                                sets the number of consecutive gateway
+                                                sets the number of consecutive infra-gateway
                                                 errors triggering ejection.
                                               format: int32
                                               type: integer
@@ -13848,7 +13848,7 @@ spec:
                                                   the conditions that trigger retries.
                                                 enum:
                                                 - 5xx
-                                                - gateway-error
+                                                - infra-gateway-error
                                                 - reset
                                                 - reset-before-request
                                                 - connect-failure
@@ -13956,10 +13956,10 @@ spec:
                                 rule: 'has(self.backendRefs) ? self.backendRefs.all(f,
                                   f.kind == ''Service'' || f.kind == ''Backend'')
                                   : true'
-                              - message: BackendRefs only support Core and gateway.envoyproxy.io
+                              - message: BackendRefs only support Core and infra-gateway.envoyproxy.io
                                   group.
                                 rule: 'has(self.backendRefs) ? (self.backendRefs.all(f,
-                                  f.group == "" || f.group == ''gateway.envoyproxy.io''))
+                                  f.group == "" || f.group == ''infra-gateway.envoyproxy.io''))
                                   : true'
                             type:
                               default: OpenTelemetry
@@ -14342,7 +14342,7 @@ spec:
                                     type: boolean
                                 type: object
                               healthCheck:
-                                description: HealthCheck allows gateway to perform
+                                description: HealthCheck allows infra-gateway to perform
                                   active health checking on backends.
                                 properties:
                                   active:
@@ -14607,7 +14607,7 @@ spec:
                                       consecutiveGatewayErrors:
                                         default: 0
                                         description: ConsecutiveGatewayErrors sets
-                                          the number of consecutive gateway errors
+                                          the number of consecutive infra-gateway errors
                                           triggering ejection.
                                         format: int32
                                         type: integer
@@ -14959,7 +14959,7 @@ spec:
                                             that trigger retries.
                                           enum:
                                           - 5xx
-                                          - gateway-error
+                                          - infra-gateway-error
                                           - reset
                                           - reset-before-request
                                           - connect-failure
@@ -15099,10 +15099,10 @@ spec:
                         - message: BackendRefs only support Service and Backend kind.
                           rule: 'has(self.backendRefs) ? self.backendRefs.all(f, f.kind
                             == ''Service'' || f.kind == ''Backend'') : true'
-                        - message: BackendRefs only support Core and gateway.envoyproxy.io
+                        - message: BackendRefs only support Core and infra-gateway.envoyproxy.io
                             group.
                           rule: 'has(self.backendRefs) ? (self.backendRefs.all(f,
-                            f.group == "" || f.group == ''gateway.envoyproxy.io''))
+                            f.group == "" || f.group == ''infra-gateway.envoyproxy.io''))
                             : true'
                       samplingFraction:
                         description: |-

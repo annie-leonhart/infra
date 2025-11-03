@@ -11,7 +11,7 @@ global:
   images:
     envoyGateway:
       # This is the full image name including the hub, repo, and tag.
-      image: docker.io/envoyproxy/gateway:v1.5.4
+      image: docker.io/envoyproxy/infra-gateway:v1.5.4
       # Specify image pull policy if default behavior isn't desired.
       # Default behavior: latest images will be Always else IfNotPresent.
       pullPolicy: IfNotPresent
@@ -34,7 +34,7 @@ deployment:
   annotations: {}
   envoyGateway:
     image:
-      # if both this and global.imageRegistry are specified, this has to include both registry and repository explicitly, eg docker.io/envoyproxy/gateway
+      # if both this and global.imageRegistry are specified, this has to include both registry and repository explicitly, eg docker.io/envoyproxy/infra-gateway
       repository: ""
       tag: ""
     imagePullPolicy: ""
@@ -98,7 +98,7 @@ config:
 # -- EnvoyGateway configuration. Visit https://gateway.envoyproxy.io/docs/api/extension_types/#envoygateway to view all options.
   envoyGateway:
     gateway:
-      controllerName: gateway.envoyproxy.io/gatewayclass-controller
+      controllerName: infra-gateway.envoyproxy.io/gatewayclass-controller
     provider:
       type: Kubernetes
     logging:

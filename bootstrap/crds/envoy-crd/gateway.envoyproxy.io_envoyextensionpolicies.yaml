@@ -4,9 +4,9 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.17.3
-  name: envoyextensionpolicies.gateway.envoyproxy.io
+  name: envoyextensionpolicies.infra-gateway.envoyproxy.io
 spec:
-  group: gateway.envoyproxy.io
+  group: infra-gateway.envoyproxy.io
   names:
     kind: EnvoyExtensionPolicy
     listKind: EnvoyExtensionPolicyList
@@ -344,7 +344,7 @@ spec:
                               type: boolean
                           type: object
                         healthCheck:
-                          description: HealthCheck allows gateway to perform active
+                          description: HealthCheck allows infra-gateway to perform active
                             health checking on backends.
                           properties:
                             active:
@@ -595,7 +595,7 @@ spec:
                                 consecutiveGatewayErrors:
                                   default: 0
                                   description: ConsecutiveGatewayErrors sets the number
-                                    of consecutive gateway errors triggering ejection.
+                                    of consecutive infra-gateway errors triggering ejection.
                                   format: int32
                                   type: integer
                                 consecutiveLocalOriginFailures:
@@ -938,7 +938,7 @@ spec:
                                       that trigger retries.
                                     enum:
                                     - 5xx
-                                    - gateway-error
+                                    - infra-gateway-error
                                     - reset
                                     - reset-before-request
                                     - connect-failure
@@ -1131,10 +1131,10 @@ spec:
                       == ''Service'' || f.kind == ''ServiceImport'' || f.kind == ''Backend'')
                       : true'
                   - message: BackendRefs only supports Core, multicluster.x-k8s.io,
-                      and gateway.envoyproxy.io groups.
+                      and infra-gateway.envoyproxy.io groups.
                     rule: 'has(self.backendRefs) ? (self.backendRefs.all(f, f.group
                       == "" || f.group == ''multicluster.x-k8s.io'' || f.group ==
-                      ''gateway.envoyproxy.io'')) : true'
+                      ''infra-gateway.envoyproxy.io'')) : true'
                   - message: If FullDuplexStreamed body processing mode is used, FailOpen
                       must be false.
                     rule: '!(has(self.failOpen) && self.failOpen == true && has(self.processingMode)
@@ -1318,9 +1318,9 @@ spec:
                 items:
                   properties:
                     group:
-                      default: gateway.networking.k8s.io
+                      default: infra-gateway.networking.k8s.io
                       description: Group is the group that this selector targets.
-                        Defaults to gateway.networking.k8s.io
+                        Defaults to infra-gateway.networking.k8s.io
                       maxLength: 253
                       pattern: ^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
                       type: string
@@ -1373,8 +1373,8 @@ spec:
                   - kind
                   type: object
                   x-kubernetes-validations:
-                  - message: group must be gateway.networking.k8s.io
-                    rule: 'has(self.group) ? self.group == ''gateway.networking.k8s.io''
+                  - message: group must be infra-gateway.networking.k8s.io
+                    rule: 'has(self.group) ? self.group == ''infra-gateway.networking.k8s.io''
                       : true '
                 type: array
               wasm:
@@ -1684,17 +1684,17 @@ spec:
               rule: '(has(self.targetRef) && !has(self.targetRefs)) || (!has(self.targetRef)
                 && has(self.targetRefs)) || (has(self.targetSelectors) && self.targetSelectors.size()
                 > 0) '
-            - message: this policy can only have a targetRef.group of gateway.networking.k8s.io
-              rule: 'has(self.targetRef) ? self.targetRef.group == ''gateway.networking.k8s.io''
+            - message: this policy can only have a targetRef.group of infra-gateway.networking.k8s.io
+              rule: 'has(self.targetRef) ? self.targetRef.group == ''infra-gateway.networking.k8s.io''
                 : true'
             - message: this policy can only have a targetRef.kind of Gateway/HTTPRoute/GRPCRoute/TCPRoute/UDPRoute/TLSRoute
               rule: 'has(self.targetRef) ? self.targetRef.kind in [''Gateway'', ''HTTPRoute'',
                 ''GRPCRoute'', ''UDPRoute'', ''TCPRoute'', ''TLSRoute''] : true'
             - message: this policy does not yet support the sectionName field
               rule: 'has(self.targetRef) ? !has(self.targetRef.sectionName) : true'
-            - message: this policy can only have a targetRefs[*].group of gateway.networking.k8s.io
+            - message: this policy can only have a targetRefs[*].group of infra-gateway.networking.k8s.io
               rule: 'has(self.targetRefs) ? self.targetRefs.all(ref, ref.group ==
-                ''gateway.networking.k8s.io'') : true '
+                ''infra-gateway.networking.k8s.io'') : true '
             - message: this policy can only have a targetRefs[*].kind of Gateway/HTTPRoute/GRPCRoute/TCPRoute/UDPRoute/TLSRoute
               rule: 'has(self.targetRefs) ? self.targetRefs.all(ref, ref.kind in [''Gateway'',
                 ''HTTPRoute'', ''GRPCRoute'', ''UDPRoute'', ''TCPRoute'', ''TLSRoute''])
@@ -1775,7 +1775,7 @@ spec:
                         PolicyAncestorStatus struct describes the status of.
                       properties:
                         group:
-                          default: gateway.networking.k8s.io
+                          default: infra-gateway.networking.k8s.io
                           description: |-
                             Group is the group of the referent.
                             When unspecified, "gateway.networking.k8s.io" is inferred.

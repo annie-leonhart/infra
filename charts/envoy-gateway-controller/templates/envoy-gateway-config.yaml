@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: envoy-gateway-config
+  name: envoy-infra-gateway-controller-config
   namespace: '{{ .Release.Namespace }}'
   labels:
   {{- include "eg.labels" . | nindent 4 }}

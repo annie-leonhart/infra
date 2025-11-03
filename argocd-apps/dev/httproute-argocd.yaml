@@ -1,20 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: envoy-controller-app
+  name: httproute-argocd
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/annie-leonhart/infra.git
     targetRevision: HEAD
-    path: charts/envoy-gateway
-    helm:
-      valueFiles:
-        - ../../values/dev/envoy-controller/values.yaml
+    path: gateway/dev/infra-gateway/httproute/
   destination:
     server: https://kubernetes.default.svc
-    namespace: envoy-gateway
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true

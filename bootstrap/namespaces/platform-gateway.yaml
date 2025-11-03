@@ -2,7 +2,4 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: platform-gateway
-  labels:
-    purpose: ingress
-    scope: shared
-    owner: platform
+

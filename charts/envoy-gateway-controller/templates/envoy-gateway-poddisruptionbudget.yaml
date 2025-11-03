@@ -2,7 +2,7 @@
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
-  name: envoy-gateway
+  name: envoy-infra-gateway-controller
   namespace: '{{ .Release.Namespace }}'
 spec:
   {{- if and .Values.podDisruptionBudget.minAvailable }}
@@ -13,6 +13,6 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      control-plane: envoy-gateway
+      control-plane: envoy-infra-gateway-controller
     {{- include "eg.selectorLabels" . | nindent 6 }}
 {{- end }}

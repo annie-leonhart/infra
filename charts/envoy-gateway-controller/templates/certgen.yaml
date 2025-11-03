@@ -35,11 +35,11 @@ spec:
       - args:
         {{- toYaml $args | nindent 8 }}
         command:
-        - envoy-gateway
+        - envoy-infra-gateway-controller
         - certgen
       {{- else }}
       - command:
-        - envoy-gateway
+        - envoy-infra-gateway-controller
         - certgen
       {{- end }}
         env:
@@ -52,7 +52,7 @@ spec:
           value: {{ .Values.kubernetesClusterDomain }}
         image: {{ include "eg.image" . }}
         imagePullPolicy: {{ include "eg.image.pullPolicy" . }}
-        name: envoy-gateway-certgen
+        name: envoy-infra-gateway-controller-certgen
         {{- with .Values.certgen.job.resources }}
         resources:
           {{- toYaml . | nindent 10 }}

@@ -1,18 +1,18 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: envoy-gateway
+  name: envoy-infra-gateway-controller
   namespace: '{{ .Release.Namespace }}'
   {{- with .Values.service.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
   labels:
-    control-plane: envoy-gateway
+    control-plane: envoy-infra-gateway-controller
   {{- include "eg.labels" . | nindent 4 }}
 spec:
   selector:
-    control-plane: envoy-gateway
+    control-plane: envoy-infra-gateway-controller
   {{- include "eg.selectorLabels" . | nindent 4 }}
   ports:
   {{- .Values.deployment.ports | toYaml | nindent 2 -}}

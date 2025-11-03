@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: envoy-gateway
+  name: envoy-infra-gateway-controller
   namespace: '{{ .Release.Namespace }}'
   {{- with .Values.deployment.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
   labels:
-    control-plane: envoy-gateway
+    control-plane: envoy-infra-gateway-controller
   {{- include "eg.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels:
-      control-plane: envoy-gateway
+      control-plane: envoy-infra-gateway-controller
     {{- include "eg.selectorLabels" . | nindent 6 }}
   template:
     metadata:
@@ -23,7 +23,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        control-plane: envoy-gateway
+        control-plane: envoy-infra-gateway-controller
       {{- include "eg.selectorLabels" . | nindent 8 }}
       {{- with .Values.deployment.pod.labels }}
         {{- toYaml . | nindent 8 }}
@@ -48,7 +48,7 @@ spec:
       containers:
       - args:
         - server
-        - --config-path=/config/envoy-gateway.yaml
+        - --config-path=/config/envoy-infra-gateway-controller-controller.yaml
         env:
         - name: ENVOY_GATEWAY_NAMESPACE
           valueFrom:
@@ -65,7 +65,7 @@ spec:
             port: 8081
           initialDelaySeconds: 15
           periodSeconds: 20
-        name: envoy-gateway
+        name: envoy-infra-gateway-controller
         ports:
         {{- range .Values.deployment.ports }}
         - containerPort: {{ .port }}
@@ -87,7 +87,7 @@ spec:
           {{- toYaml .Values.deployment.envoyGateway.securityContext | nindent 10 }}
         volumeMounts:
         - mountPath: /config
-          name: envoy-gateway-config
+          name: envoy-infra-gateway-controller-config
           readOnly: true
         - mountPath: /certs
           name: certs
@@ -96,13 +96,13 @@ spec:
       {{- with .Values.deployment.priorityClassName }}
       priorityClassName: {{ . | quote }}
       {{- end }}
-      serviceAccountName: envoy-gateway
+      serviceAccountName: envoy-infra-gateway-controller
       terminationGracePeriodSeconds: 10
       volumes:
       - configMap:
           defaultMode: 420
-          name: envoy-gateway-config
-        name: envoy-gateway-config
+          name: envoy-infra-gateway-controller-config
+        name: envoy-infra-gateway-controller-config
       - name: certs
         secret:
-          secretName: envoy-gateway
+          secretName: envoy-infra-gateway-controller
