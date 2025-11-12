@@ -11,7 +11,7 @@ spec:
     path: charts/elasticsearch
   destination:
     server: https://kubernetes.default.svc
-    namespace: envoy
+    namespace: logging
   syncPolicy:
     automated:
       prune: true
