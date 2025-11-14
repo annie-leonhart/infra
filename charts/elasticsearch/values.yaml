@@ -90,10 +90,10 @@ esJavaOpts: "" # example: "-Xmx1g -Xms1g"
 # Allocate smaller chunks of memory per pod.
 resources:
   requests:
-    cpu: "200m"
+    cpu: "1000m"
     memory: "200Mi"
   limits:
-    cpu: "200m"
+    cpu: "1000m"
     memory: "200Mi"
 
 initResources: {}
