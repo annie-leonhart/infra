@@ -90,11 +90,11 @@ esJavaOpts: "" # example: "-Xmx1g -Xms1g"
 # Allocate smaller chunks of memory per pod.
 resources:
   requests:
-    cpu: "100m"
-    memory: "512M"
+    cpu: "1"
+    memory: "2Gi"
   limits:
-    cpu: "1000m"
-    memory: "512M"
+    cpu: "1"
+    memory: "2Gi"
 
 initResources: {}
 # limits:
@@ -112,7 +112,7 @@ volumeClaimTemplate:
   storageClassName: "standard"
   resources:
     requests:
-      storage: 100M
+      storage: 1000M
 
 rbac:
   create: false
