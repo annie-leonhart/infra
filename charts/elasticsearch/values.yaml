@@ -29,8 +29,11 @@ esMajorVersion: ""
 # Allows you to add any config files in /usr/share/elasticsearch/config/
 # such as elasticsearch.yml and log4j2.properties
 esConfig: {}
-  # elasticsearch.yml: |
-  #   discovery.type: single-node
+#  elasticsearch.yml: |
+#    key:
+#      nestedkey: value
+#  log4j2.properties: |
+#    key = value
 
 createCert: true
 
@@ -82,7 +85,7 @@ podAnnotations: {}
 # additionals labels
 labels: {}
 
-esJavaOpts: "-Xms512m -Xmx512m"
+esJavaOpts: "" # example: "-Xmx1g -Xms1g"
 
 # Allocate smaller chunks of memory per pod.
 resources:
@@ -109,7 +112,7 @@ volumeClaimTemplate:
   storageClassName: "standard"
   resources:
     requests:
-      storage: 5Gi
+      storage: 1000M
 
 rbac:
   create: false
@@ -239,8 +242,7 @@ readinessProbe:
   timeoutSeconds: 5
 
 # https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-health.html#request-params wait_for_status
-clusterHealthCheckParams: "wait_for_status=yellow&timeout=30s"
-
+clusterHealthCheckParams: "wait_for_status=green&timeout=1s"
 
 ## Use an alternate scheduler.
 ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
