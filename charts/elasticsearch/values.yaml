@@ -28,12 +28,9 @@ esMajorVersion: ""
 
 # Allows you to add any config files in /usr/share/elasticsearch/config/
 # such as elasticsearch.yml and log4j2.properties
-esConfig: {}
-#  elasticsearch.yml: |
-#    key:
-#      nestedkey: value
-#  log4j2.properties: |
-#    key = value
+esConfig:
+  elasticsearch.yml: |
+    discovery.type: single-node
 
 createCert: true
 
@@ -85,7 +82,7 @@ podAnnotations: {}
 # additionals labels
 labels: {}
 
-esJavaOpts: "" # example: "-Xmx1g -Xms1g"
+esJavaOpts: "-Xms512m -Xmx512m"
 
 # Allocate smaller chunks of memory per pod.
 resources:
@@ -112,7 +109,7 @@ volumeClaimTemplate:
   storageClassName: "standard"
   resources:
     requests:
-      storage: 1000M
+      storage: 5Gi
 
 rbac:
   create: false
